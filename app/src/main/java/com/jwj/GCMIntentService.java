@@ -34,7 +34,7 @@ public class GCMIntentService extends GCMBaseIntentService {
     protected void onError(Context arg0, String arg1) {
         // TODO Auto-generated method stub
         /**
-         * GCM 오류 발생 시 처리해야 할 코드를 작성한다.
+         * GCM 오류 발생 시 처리해야 할 코드를 작성한다. 오류작성을 해야지
          * ErrorCode에 대해선 GCM 홈페이지와 GCMConstants 내 static variable 참조한다.
          */
 
