@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jwj">
+
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- GCM 권한 -->
+    <permission
+        android:name="com.jwj.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="com.jwj.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.jwj.RECEIVE" />
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppTheme.NoActionBar">
+        <activity
+            android:name=".multimemo.MultiMemoActivity"
+            android:theme="@style/Theme.AppTheme">
+
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+        </activity>
+        <activity
+            android:name=".multimemo.MemoInsertActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".multimemo.PhotoCaptureActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".multimemo.PhotoSelectionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".multimemo.HandwritingMakingActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".multimemo.PenPaletteDialog"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.DeviceDefault.Dialog" />
+        <activity
+            android:name=".multimemo.ColorPaletteDialog"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.DeviceDefault.Dialog" />
+        <activity
+            android:name=".multimemo.VideoRecordingActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".multimemo.VideoPlayActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".multimemo.VideoSelectionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".multimemo.VoiceRecordingActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.DeviceDefault.Dialog" />
+        <activity
+            android:name=".multimemo.VoicePlayActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.DeviceDefault.Dialog" />
+        <activity
+            android:name="com.jwj.MainActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.jwj.CheeseDetailActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:parentActivityName="com.jwj.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.jwj.MainActivity" />
+        </activity>
+
+
+        <!-- GCM 처리 서비스
+        <service android:name="com.jwj.gcm.GCMIntentServiceCoustom" />
+        <receiver
+            android:name="com.jwj.gcm.GCMBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="com.jwj" />
+            </intent-filter>
+        </receiver>
+         -->
+
+        <!---->
+        <service android:name=".GCMIntentService" />
+        <receiver
+            android:name="com.google.android.gcm.GCMBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="com.jwj"></category>
+            </intent-filter>
+        </receiver>
+
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+
+    </application>
+
+</manifest>
