@@ -4,13 +4,17 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gcm.GCMBaseIntentService;
+import com.google.android.gcm.GCMRegistrar;
 import com.jwj.gcm.GCMInfo;
 import com.jwj.gcm.HttpPostAsyncTask;
+
+import org.json.JSONObject;
 
 import java.net.URLDecoder;
 import java.util.Random;
@@ -70,12 +74,23 @@ public class GCMIntentService extends GCMBaseIntentService {
     }
 
     @Override
-    protected void onRegistered(Context context, String regId) {
+    protected void onRegistered(final Context context, String regId) {
         //GCMRegistrar.getRegistrationId(context)가 실행되어 registrationId를 발급받은 경우 해당 메소드가 콜백된다.
-        HttpPostAsyncTask task = new HttpPostAsyncTask();
-        task.execute(regId);
-        Toast.makeText(context, "onRegistered", Toast.LENGTH_LONG);
+        //HttpPostAsyncTask task = new HttpPostAsyncTask();
+        JSONObject responseJSON = new HttpPostAsyncTask().doInBackground(regId);
+
+        if (responseJSON == null) {
+            GCMRegistrar.unregister(context);
+        } else {
+            Handler handler = new Handler(context.getMainLooper());
+            handler.post(new Runnable() {
+                public void run() {
+                    Toast.makeText(context, "onRegistered : " + GCMRegistrar.getRegistrationId(context), Toast.LENGTH_LONG).show();
+                }
+            });
+        }
     }
+
 
     @Override
     protected void onUnregistered(Context context, String regId) {

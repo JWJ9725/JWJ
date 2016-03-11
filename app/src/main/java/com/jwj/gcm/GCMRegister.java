@@ -72,8 +72,8 @@ public class GCMRegister {
              */
             GCMRegistrar.register(context, GCMInfo.PROJECT_ID);
 
-            regId = GCMRegistrar.getRegistrationId(context);
-            println(context, "푸시 서비스를 위해 단말을 등록했습니다.");
+            //regId = GCMRegistrar.getRegistrationId(context);
+            //println(context, "푸시 서비스를 위해 단말을 등록했습니다.");
 
         } else {
             println(context, "Exist Registration Id: " + regId);
