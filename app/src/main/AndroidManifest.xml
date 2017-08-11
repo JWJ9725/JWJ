@@ -12,7 +12,7 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-    <!-- GCM 권한 xddddd111111-->
+    <!-- GCM 권한   ServerEdit9725-->
     <permission
         android:name="com.jwj.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
